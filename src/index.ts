@@ -19,6 +19,11 @@ export interface FieryVue
 
 export function init (this: FieryVue)
 {
+  if (!this.$options.fiery)
+  {
+    return
+  }
+
   this.$fiery = getInstance(
   {
     removeNamed: (name: string) =>
@@ -58,12 +63,18 @@ export function init (this: FieryVue)
 
 export function link (this: FieryVue)
 {
-  this.$fiery.linkSources(this)
+  if (this.$fiery)
+  {
+    this.$fiery.linkSources(this)
+  }
 }
 
 export function destroy (this: FieryVue)
 {
-  this.$fiery.destroy()
+  if (this.$fiery)
+  {
+    this.$fiery.destroy()
+  }
 }
 
 export const plugin =
@@ -78,6 +89,10 @@ export const plugin =
 
   install (Vue: any)
   {
+    Vue.config.optionMergeStrategies.fiery = (a, b) => {
+      return a || b
+    }
+
     Vue.mixin({
       beforeCreate: init,
       created: link,

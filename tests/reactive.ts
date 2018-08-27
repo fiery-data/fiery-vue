@@ -38,6 +38,7 @@ describe('reactive', function()
     }
 
     const vm = new VueTest({
+      fiery: true,
       beforeCreate() {
         this.recomputed = 0
       },

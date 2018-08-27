@@ -63,8 +63,9 @@ Vue.use(FieryVue)
 const app = firebase.initializeApp({ ... })
 const fs = firebase.firestore(app);
 
-var vm = new Vue({
+new Vue({
   el: '#app',
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos')) // live collection,
@@ -101,6 +102,7 @@ database the document is stored in, the collection, and with which options.
 ```javascript
 new Vue({
   inject: ['currentUserId'],
+  fiery: true, // required to add this.$fiery to this component
   data() {
     const $fiery = this.$fiery
     return {
@@ -115,6 +117,7 @@ new Vue({
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     const $fiery = this.$fiery
     return {
@@ -130,6 +133,7 @@ new Vue({
 ```javascript
 new Vue({
   inject: ['currentUserId'],
+  fiery: true, // required to add this.$fiery to this component
   data() {
     const $fiery = this.$fiery
     return {
@@ -150,6 +154,7 @@ new Vue({
 ```javascript
 new Vue({
   inject: ['currentUserId'],
+  fiery: true, // required to add this.$fiery to this component
   data() {
     const $fiery = this.$fiery
     return {
@@ -168,6 +173,7 @@ For computed properties the third parameter to `$fiery` is required (it's best t
 ```javascript
 new Vue({
   inject: ['currentUserId'],
+  fiery: true, // required to add this.$fiery to this component
   data() {
     // data examples above
     return {
@@ -198,6 +204,7 @@ new Vue({
 ```javascript
 new Vue({
   inject: ['currentUserId'],
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos'))
@@ -249,6 +256,7 @@ You can pass the same options to sub, nesting as deep as you want!
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       // this.todos[todoIndex].children[childIndex]
@@ -294,6 +302,7 @@ Todo.prototype = {
 }
 
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       // this.todos[todoIndex] instanceof Todo
@@ -328,6 +337,7 @@ Todo.prototype = {
 }
 
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos'), {
@@ -372,6 +382,7 @@ new Vue({
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos'), {
@@ -398,6 +409,7 @@ new Vue({
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos'), {
@@ -428,6 +440,7 @@ new Vue({
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos'), {key: 'id', exclude: ['id']}) // must be excluded manually from saving
@@ -496,6 +509,7 @@ FieryVue.setGlobalOptions({
 })
 
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       comments: this.$fiery(fs.collection('comment'), 'comment') // you can pass a named or Shared
@@ -508,6 +522,7 @@ new Vue({
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   data() {
     return {
       todos: this.$fiery(fs.collection('todos'), {
@@ -525,6 +540,7 @@ new Vue({
 
 ```javascript
 new Vue({
+  fiery: true, // required to add this.$fiery to this component
   methods: {
     bindTodos() {
       this.todos = this.$fiery(fs.collection('todos'))
