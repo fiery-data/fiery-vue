@@ -1,14 +1,14 @@
 
 import getInstance, {
-  define, setGlobalOptions, mergeStrategy, mergeOptions //, FieryInstance, FierySources
+  define, setGlobalOptions, mergeStrategy, mergeOptions, stats, FieryInstance, FierySources
 } from 'fiery-data'
 
 
 export interface FieryVue
 {
-  // $fiery: FieryInstance
+  $fiery: FieryInstance
 
-  // $fires: FierySources
+  $fires: FierySources
 
   [prop: string]: any
 
@@ -86,6 +86,8 @@ export const plugin =
   define,
 
   setGlobalOptions,
+
+  stats,
 
   install (Vue: any)
   {
