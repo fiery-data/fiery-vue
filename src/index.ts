@@ -1,6 +1,6 @@
 
 import getInstance, {
-  define, setGlobalOptions, mergeStrategy, mergeOptions, stats, FieryInstance, FierySources
+  define, setGlobalOptions, mergeStrategy, mergeOptions, stats, callbacks, FieryInstance, FierySources
 } from 'fiery-data'
 
 
@@ -88,6 +88,8 @@ export const plugin =
   setGlobalOptions,
 
   stats,
+
+  callbacks,
 
   install (Vue: any)
   {
