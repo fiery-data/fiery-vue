@@ -29,6 +29,7 @@ export declare const plugin: {
         onDelete(data: import("fiery-data/dist/types/types").FieryData, cache: import("fiery-data/dist/types/types").FieryCacheEntry): void;
         onClear(data: import("fiery-data/dist/types/types").FieryData, props: string[]): void;
         onGetChanges(data: import("fiery-data/dist/types/types").FieryData, cache: import("fiery-data/dist/types/types").FieryCacheEntry, fields?: string[] | undefined): void;
+        onRefresh(data: import("fiery-data/dist/types/types").FieryData, cachedOnly?: boolean | undefined): void;
         onBuild(data: import("fiery-data/dist/types/types").FieryData, cache: import("fiery-data/dist/types/types").FieryCacheEntry): void;
         onCacheCreate(cache: import("fiery-data/dist/types/types").FieryCacheEntry): void;
         onCacheDestroy(cache: import("fiery-data/dist/types/types").FieryCacheEntry): void;
