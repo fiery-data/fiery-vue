@@ -28,7 +28,7 @@ Relies on [fiery-data](https://github.com/fiery-data/fiery-data) - you can go th
 - Add active record methods (sync, update, remove, clear, getChanges) [example](#active-record)
 - Control over what properties are sent on save [example](#save-fields)
 - Encode & decode properties [example](#encode--decode-properties)
-- Adding the key to the document [example](#adding-key-to-object)
+- Adding the key and exists to the document [example](#adding-key-and-exists-to-object)
 - Sharing, extending, defining, and global options [example](#sharing-extending-defining-and-global-options)
 - Callbacks (error, success, missing, remove) [example](#callbacks)
 - Custom binding / unbinding [example](#binding-and-unbinding)
@@ -475,14 +475,14 @@ new Vue({
 })
 ```
 
-### Adding key to object
+### Adding key and exists to object
 
 ```javascript
 new Vue({
   fiery: true, // required to add this.$fiery to this component
   data() {
     return {
-      todos: this.$fiery(fs.collection('todos'), {key: 'id', exclude: ['id']}) // must be excluded manually from saving
+      todos: this.$fiery(fs.collection('todos'), {key: 'id', propExists: 'exists', exclude: ['id', 'exists']}) // must be excluded manually from saving if include is not specified
     }
   },
   methods: {
