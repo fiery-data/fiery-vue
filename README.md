@@ -19,6 +19,7 @@ Relies on [fiery-data](https://github.com/fiery-data/fiery-data) - you can go th
 - Documents [example](#documents)
 - Collections (stored as array or map) [example](#collections)
 - Queries (stored as array or map) [example](#queries)
+- Pagination [example](#pagination)
 - Real-time or once [example](#real-time-or-once)
 - Data or computed properties [example](#data-or-computed)
 - Adding, updating, sync, removing, remove field [example](#adding-updating-overwriting-removing)
@@ -144,6 +145,44 @@ new Vue({
         query: (cars) => cars.where('created_by', '==', this.currentUserId),
         map: true
       })
+    }
+  }
+})
+```
+
+### Pagination
+
+```javascript
+new Vue({
+  data() {
+    return {
+      make: 'Honda',
+      limit: 10
+    }
+  },
+  computed: {
+    carsOptions() {
+      const { make, limit } = this // we have to reference these here for this to work
+      return {
+         query: cars => cars.where('make', '==', make).limit(limit)
+      }
+    },
+    cars() {
+      return this.$fiery(fs.collection('cars'), this.carsOptions, 'cars')
+    },
+    carsPager() {
+      return this.$fiery.pager(this.cars)
+    }
+  },
+  methods: {
+    next() {
+      this.carsPager.next() // next 10 please, returns a promise which resolves when they're fetched
+
+      // this.carsPager.index // which page we're on
+      // this.carsPager.hasNext() // typically returns true since we don't really know - unless cars is empty
+      // this.carsPager.next() // executes the query again but on the next 10 results. index++
+      // this.carsPager.hasPrev() // looks at pager.index to determines if there's a previous page
+      // this.carsPager.prev() // executes the query again but on the previous 10 results. index--
     }
   }
 })
