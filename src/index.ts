@@ -37,24 +37,6 @@ export function init (this: FieryVue)
     removeProperty: (target: any, property: string) =>
     {
       this.$delete(target, property)
-    },
-    arraySet: (target: any[], index: number, value: any) =>
-    {
-      if (target[index] !== value)
-      {
-        target.splice(index, 1, value)
-      }
-    },
-    arrayResize: (target: any[], size: number) =>
-    {
-      if (target.length > size)
-      {
-        target.splice(size, target.length - size)
-      }
-      else if (target.length < size)
-      {
-        target.length = size
-      }
     }
   })
 
