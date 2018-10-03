@@ -1,6 +1,6 @@
 
 import getInstance, {
-  define, setGlobalOptions, mergeStrategy, mergeOptions, stats, callbacks, FieryInstance, FierySources
+  define, setGlobalOptions, mergeStrategy, mergeOptions, stats, callbacks, destroyGlobalCache, getCacheForData, destroyCache, getOptions, FieryInstance, FierySources
 } from 'fiery-data'
 
 
@@ -69,9 +69,15 @@ export const plugin =
 
   setGlobalOptions,
 
+  getOptions,
+
   stats,
 
   callbacks,
+
+  getCacheForData,
+
+  destroyGlobalCache,
 
   install (Vue: any)
   {

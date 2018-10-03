@@ -1,4 +1,4 @@
-import { define, setGlobalOptions, FieryInstance, FierySources } from 'fiery-data';
+import { define, setGlobalOptions, destroyGlobalCache, getCacheForData, getOptions, FieryInstance, FierySources } from 'fiery-data';
 export interface FieryVue {
     $fiery: FieryInstance;
     $fires: FierySources;
@@ -14,6 +14,7 @@ export declare const plugin: {
     mergeStrategy: import("fiery-data/dist/types/types").FieryMergeStrategies;
     define: typeof define;
     setGlobalOptions: typeof setGlobalOptions;
+    getOptions: typeof getOptions;
     stats: {
         queries: number;
         reads: number;
@@ -44,6 +45,8 @@ export declare const plugin: {
         onInstanceCreate(instance: FieryInstance): void;
         onInstanceDestroy(instance: FieryInstance): void;
     };
+    getCacheForData: typeof getCacheForData;
+    destroyGlobalCache: typeof destroyGlobalCache;
     install(Vue: any): void;
 };
 export default plugin;
