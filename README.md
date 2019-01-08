@@ -204,7 +204,9 @@ new Vue({
     carsOptions() {
       const { make, limit } = this // we have to reference these here for this to work
       return {
-         query: cars => cars.where('make', '==', make).limit(limit)
+         query: cars => cars.where('make', '==', make).orderBy('created_at').limit(limit),
+         // required for prev() - orderBy's must be in reverse
+         queryReverse: cars => cars.where('make', '==', make).orderBy('created_at', 'desc').limit(limit)
       }
     },
     cars() {
