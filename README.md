@@ -157,7 +157,7 @@ A stream is an ordered collection of documents where the first N are fetched, an
 are added. You can look back further in the stream using `more`. A use case for
 streams are a message channel. When the stream is first loaded N documents are
 read. As new messages are created they are added to the beginning of the collection. If the user wishes to see older messages they simply have to call
-`more` on the stream to load M more.
+`more` on the stream to load M more.  The `once` property does not work on streams, they are real-time only.
 
 You MUST have an orderBy clause on the query option and `stream` must be `true`.
 
