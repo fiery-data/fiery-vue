@@ -78,8 +78,9 @@ new Vue({
   computed: {
     // Updated when role changes
     personsWithRole() {
+      const { role } = this
       const options = {
-        query: q => q.where('role', '==', this.role),
+        query: q => q.where('role', '==', role),
         type: Person
       }
       return this.$fiery(fs.collection('persons'), options, 'personsWithRole')
@@ -264,15 +265,19 @@ new Vue({
   },
   computed: {
     currentUser() {
+      const { currentUserId } = this;
       const options = {}
-      return this.$fiery(fs.collection('users').doc(this.currentUserId), options, 'currentUser') // reactive and real-time
+      return this.$fiery(fs.collection('users').doc(currentUserId), options, 'currentUser') // reactive and real-time
     },
     todos() {
+      // For computed results you need to get the dependent variables early so they are properly tracked.
+      // The query/queryReversed callback may not be called immediately, so they must be pulled out.
+      const { currentUserId, status, limit } = this;
       const options = {
         query: todos => todos
-          .where('created_by', '==', this.currentUserId)
-          .where('status', '==', this.status)
-          .limit(this.limit)
+          .where('created_by', '==', currentUserId)
+          .where('status', '==', status)
+          .limit(limit)
       }
       return this.$fiery(fs.collection('todos'), options, 'todos') // reactive and real-time
     }
@@ -293,7 +298,8 @@ new Vue({
   },
   computed: {
     currentUser() {
-      return this.$fiery(fs.collection('users').doc(this.currentUserId), {}, 'currentUser')
+      const { currentUserId } = this;
+      return this.$fiery(fs.collection('users').doc(currentUserId), {}, 'currentUser')
     }
   },
   methods: {
