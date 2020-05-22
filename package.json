@@ -23,7 +23,7 @@
         "fiery-data"
     ],
     "dependencies": {
-        "fiery-data": "0.10.1"
+        "fiery-data": "1.0.0"
     },
     "devDependencies": {
         "@types/chai": "^4.1.4",
