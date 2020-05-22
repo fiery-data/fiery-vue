@@ -1,6 +1,6 @@
 {
     "name": "fiery-vue",
-    "version": "0.10.1",
+    "version": "0.10.2",
     "author": "Philip Diffenderfer",
     "description": "A Typescript/JS library for Vue and Google Firebase Firestore",
     "license": "MIT",
